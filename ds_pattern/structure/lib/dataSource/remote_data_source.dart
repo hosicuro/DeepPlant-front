@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:xml2json/xml2json.dart';
 
 class RemoteDataSource {
-  static String baseUrl = 'http://3.38.52.82';
+  static String baseUrl = 'http://3.39.51.41';
 
   // 육류 정보 전송 (POST)
   static Future<dynamic> sendMeatData(String? dest, String jsonData) async {
@@ -66,8 +66,7 @@ class RemoteDataSource {
 
   // 딥에이징 데이터 삭제 (GET)
   static Future<dynamic> deleteDeepAging(String id, int seqno) async {
-    dynamic response =
-        await _getApi('meat/delete/deep_aging?id=$id&seqno=$seqno');
+    dynamic response = await _getApi('meat/delete/deep_aging?id=$id&seqno=$seqno');
     return response;
   }
 
@@ -106,10 +105,8 @@ class RemoteDataSource {
   }
 
   // 기간 내 데이터 조회 (GET)
-  static Future<dynamic> getCreatedAtData(
-      int count, String start, String end) async {
-    dynamic response =
-        await _getApi('meat/get?offset=0&count=$count&start=$start&end=$end');
+  static Future<dynamic> getCreatedAtData(int count, String start, String end) async {
+    dynamic response = await _getApi('meat/get?offset=0&count=$count&start=$start&end=$end');
     return response;
   }
 
@@ -138,8 +135,7 @@ class RemoteDataSource {
     String requestBody = jsonData;
 
     try {
-      final response = await http.post(Uri.parse(apiUrl),
-          headers: headers, body: requestBody);
+      final response = await http.post(Uri.parse(apiUrl), headers: headers, body: requestBody);
       if (response.statusCode == 200) {
         print('POST 요청 성공');
         print(response.body);
@@ -174,8 +170,7 @@ class RemoteDataSource {
   }
 
   // 육류 이미지 firebase 저장 (POST)
-  static Future<dynamic> sendImageToFirebase(
-      String imagePath, String imageDest) async {
+  static Future<dynamic> sendImageToFirebase(String imagePath, String imageDest) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     try {
       final refMeatImage = firebaseStorage.ref().child('$imageDest.png');
